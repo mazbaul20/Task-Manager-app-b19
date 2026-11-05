@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
+import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,6 +13,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer(Duration(seconds: 2), _goToHome);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _goToHome() {
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
