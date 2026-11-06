@@ -3,6 +3,7 @@ import 'package:task_manager_app_b19/presentation/feature/home/widget/app_logo.d
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
+import 'widget/filter_button.dart';
 import 'widget/stat_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -90,6 +91,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     iconColor: AppColors.greenIcon,
                     count: 0,
                     label: 'Completed',
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              spacing: 10,
+              children: [
+                Expanded(
+                  child: FilterButton(
+                    label: "All",
+                    isSelected: true,
+                    onTap: () {},
+                  ),
+                ),
+                Expanded(
+                  child: FilterButton(
+                    label: "Pending",
+                    isSelected: false,
+                    onTap: () {},
+                  ),
+                ),
+                Expanded(
+                  child: FilterButton(
+                    label: "Completed",
+                    isSelected: false,
+                    onTap: () {},
                   ),
                 ),
               ],
