@@ -3,8 +3,10 @@ import 'package:task_manager_app_b19/presentation/feature/home/widget/app_logo.d
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
+import '../../../core/task.dart';
 import 'widget/filter_button.dart';
 import 'widget/stat_card.dart';
+import 'widget/task_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 10,
           children: [
             Text(
               AppStrings.goodMorning,
@@ -121,24 +124,58 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: .spaceBetween,
               children: [
-                Text("TASKS",style: TextStyle(
-                  color: AppColors.secondaryText,
-                  fontWeight: .bold,
-                  fontSize: 16,
-                ),),
-                Text("0 tasks",style: TextStyle(
-                  color: AppColors.secondaryText,
-                  fontWeight: .bold,
-                  fontSize: 16,
-                ),),
+                Text(
+                  "TASKS",
+                  style: TextStyle(
+                    color: AppColors.secondaryText,
+                    fontWeight: .bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  "0 tasks",
+                  style: TextStyle(
+                    color: AppColors.secondaryText,
+                    fontWeight: .bold,
+                    fontSize: 16,
+                  ),
+                ),
               ],
+            ),
+            TaskCard(
+              task: Task(
+                title: 'Finish onboarding flow mockups',
+                description:
+                    'Wrap up the new user onboarding screens for review.',
+                dueDate: 'Nov 4',
+                priority: 'High',
+                createdDate: 'Oct 28, 2026',
+              ),
+              onTap: () {},
+              onStatusTap: () {},
+            ),
+            TaskCard(
+              task: Task(
+                title: 'Finish onboarding flow mockups',
+                description:
+                    'Wrap up the new user onboarding screens for review.',
+                dueDate: 'Nov 4',
+                priority: 'High',
+                createdDate: 'Oct 28, 2026',
+              ),
+              onTap: () {},
+              onStatusTap: () {},
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColors.primary,
+        child: Icon(Icons.add, color: AppColors.white),
       ),
     );
   }

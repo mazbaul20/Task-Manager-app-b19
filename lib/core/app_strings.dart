@@ -4,14 +4,17 @@ class AppStrings {
   static const String appName = 'Taskly';
   static const String appTagline = 'Plan your day, simply.';
 
-  // Greeting
-  static const String goodMorning = 'Good Morning';
-
-  // Dashboard
+  // Home
+  static const String goodMorning = 'GOOD MORNING';
+  static const String userName = 'Mazbaul';
   static const String total = 'Total';
   static const String pending = 'Pending';
   static const String completed = 'Completed';
-  static const String tasks = 'Tasks';
+  static const String all = 'All';
+  static const String tasks = 'TASKS';
+  static const String done = 'Done';
+
+  // Dashboard
   static const String noTasksYet = 'No tasks yet';
   static const String createFirstTask =
       'Create your first task to start planning your day.';
