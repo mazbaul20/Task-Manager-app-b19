@@ -121,6 +121,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                Text("TASKS",style: TextStyle(
+                  color: AppColors.secondaryText,
+                  fontWeight: .bold,
+                  fontSize: 16,
+                ),),
+                Text("0 tasks",style: TextStyle(
+                  color: AppColors.secondaryText,
+                  fontWeight: .bold,
+                  fontSize: 16,
+                ),),
+              ],
+            ),
           ],
         ),
       ),
