@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app_b19/presentation/feature/home/widget/app_logo.dart';
+import 'package:task_manager_app_b19/presentation/feature/home/widget/empty_task_view.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
@@ -16,8 +17,44 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<Task> _tasks = demoTasks;
+
+  String _selectedFilter = AppStrings.all;
+
+  List<Task> get _visibleTasks {
+    if (_selectedFilter == AppStrings.pending) {
+      return _tasks.where((task) => task.isCompleted == false).toList();
+    } else if (_selectedFilter == AppStrings.completed) {
+      return _tasks.where((task) => task.isCompleted == true).toList();
+    } else {
+      return _tasks;
+    }
+  }
+
+  int get _completedCount =>
+      _tasks.where((task) => task.isCompleted == true).length;
+  int get _pendingCount =>
+      _tasks.where((task) => task.isCompleted == false).length;
+
+  void _onFilterTap(String filter) {
+    setState(() {
+      _selectedFilter = filter;
+    });
+  }
+
+  void _onStatusTap(Task task) {
+    setState(() {
+      task.isCompleted = !task.isCompleted;
+    });
+  }
+
+  void _goToAddTask() {}
+  void _goToDetails() {}
+
   @override
   Widget build(BuildContext context) {
+    final List<Task> visibleTasks = _visibleTasks;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.background,
@@ -76,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: StatCard(
                     icon: Icons.format_list_bulleted,
                     iconColor: AppColors.primary,
-                    count: 0,
+                    count: _tasks.length,
                     label: 'Total',
                   ),
                 ),
@@ -84,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: StatCard(
                     icon: Icons.schedule,
                     iconColor: AppColors.amberIcon,
-                    count: 0,
+                    count: _pendingCount,
                     label: 'Pending',
                   ),
                 ),
@@ -92,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: StatCard(
                     icon: Icons.check_circle_outline,
                     iconColor: AppColors.greenIcon,
-                    count: 0,
+                    count: _completedCount,
                     label: 'Completed',
                   ),
                 ),
@@ -104,71 +141,76 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: FilterButton(
                     label: "All",
-                    isSelected: true,
-                    onTap: () {},
+                    isSelected: _selectedFilter == AppStrings.all,
+                    onTap: () => _onFilterTap(AppStrings.all),
                   ),
                 ),
                 Expanded(
                   child: FilterButton(
                     label: "Pending",
-                    isSelected: false,
-                    onTap: () {},
+                    isSelected: _selectedFilter == AppStrings.pending,
+                    onTap: () => _onFilterTap(AppStrings.pending),
                   ),
                 ),
                 Expanded(
                   child: FilterButton(
                     label: "Completed",
-                    isSelected: false,
-                    onTap: () {},
+                    isSelected: _selectedFilter == AppStrings.completed,
+                    onTap: () => _onFilterTap(AppStrings.completed),
                   ),
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                Text(
-                  "TASKS",
-                  style: TextStyle(
-                    color: AppColors.secondaryText,
-                    fontWeight: .bold,
-                    fontSize: 16,
+            if (visibleTasks.isNotEmpty)
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Text(
+                    "TASKS",
+                    style: TextStyle(
+                      color: AppColors.secondaryText,
+                      fontWeight: .bold,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                Text(
-                  "0 tasks",
-                  style: TextStyle(
-                    color: AppColors.secondaryText,
-                    fontWeight: .bold,
-                    fontSize: 16,
+                  Text(
+                    "${visibleTasks.length} ${AppStrings.tasks}",
+                    style: TextStyle(
+                      color: AppColors.secondaryText,
+                      fontWeight: .bold,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            TaskCard(
-              task: Task(
-                title: 'Finish onboarding flow mockups',
-                description:
-                    'Wrap up the new user onboarding screens for review.',
-                dueDate: 'Nov 4',
-                priority: 'High',
-                createdDate: 'Oct 28, 2026',
+                ],
               ),
-              onTap: () {},
-              onStatusTap: () {},
-            ),
-            TaskCard(
-              task: Task(
-                title: 'Finish onboarding flow mockups',
-                description:
-                    'Wrap up the new user onboarding screens for review.',
-                dueDate: 'Nov 4',
-                priority: 'High',
-                createdDate: 'Oct 28, 2026',
+            Expanded(
+              child: ListView.builder(
+                itemCount: visibleTasks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: TaskCard(
+                      task: visibleTasks[index],
+                      onTap: () {},
+                      onStatusTap: () {},
+                    ),
+                  );
+                },
               ),
-              onTap: () {},
-              onStatusTap: () {},
             ),
+
+            // TaskCard(
+            //   task: Task(
+            //     title: 'Finish onboarding flow mockups',
+            //     description:
+            //         'Wrap up the new user onboarding screens for review.',
+            //     dueDate: 'Nov 4',
+            //     priority: 'High',
+            //     createdDate: 'Oct 28, 2026',
+            //   ),
+            //   onTap: () {},
+            //   onStatusTap: () {},
+            // ),
           ],
         ),
       ),

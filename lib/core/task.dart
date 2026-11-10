@@ -22,6 +22,7 @@ List<Task> demoTasks = [
     dueDate: 'Nov 4',
     priority: 'High',
     createdDate: 'Oct 28, 2026',
+    isCompleted: false,
   ),
   Task(
     title: 'Grocery shopping',
@@ -29,6 +30,7 @@ List<Task> demoTasks = [
     dueDate: 'Nov 3',
     priority: 'Low',
     createdDate: 'Nov 1, 2026',
+    isCompleted: false,
   ),
   Task(
     title: 'Submit quarterly report',
@@ -36,6 +38,7 @@ List<Task> demoTasks = [
     dueDate: 'Oct 30',
     priority: 'High',
     createdDate: 'Oct 12, 2026',
+    isCompleted: false,
   ),
   Task(
     title: 'Book dentist appointment',
@@ -43,6 +46,7 @@ List<Task> demoTasks = [
     dueDate: 'Nov 10',
     priority: 'Medium',
     createdDate: 'Nov 2, 2026',
+    isCompleted: false,
   ),
   Task(
     title: 'Read "Atomic Habits" - ch. 4',
