@@ -21,16 +21,21 @@ class AppStrings {
   static const String addYourFirstTask = 'Add your first task';
   static const String searchTasks = 'Search tasks...';
 
-  // Task Form
+  // Add / Edit task
   static const String addTask = 'Add Task';
   static const String editTask = 'Edit Task';
   static const String taskTitle = 'Task title';
+  static const String taskTitleHint = 'e.g. Finish onboarding mockups';
   static const String description = 'Description';
   static const String optional = '(optional)';
+  static const String descriptionHint = 'Add any extra detail...';
   static const String dueDate = 'Due date';
+  static const String dueDateHint = 'Pick a date';
   static const String priority = 'Priority';
+  static const String status = 'Status';
   static const String saveTask = 'Save Task';
   static const String cancel = 'Cancel';
+  static const String titleRequired = 'Title is required';
 
   // Priority
   static const String low = 'Low';
@@ -48,7 +53,6 @@ class AppStrings {
   static const String statusCompleted = 'Completed';
 
   // Validation
-  static const String titleRequired = 'Task title is required';
   static const String invalidDate = 'Please select a valid date';
 
   // Actions
