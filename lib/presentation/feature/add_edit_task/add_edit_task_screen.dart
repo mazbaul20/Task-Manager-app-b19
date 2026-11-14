@@ -100,24 +100,35 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
                 ],
               ),
               FieldLabel(text: AppStrings.status),
-              Row(
-                spacing: 8,
-                children: [
-                  Expanded(
-                    child: StatusTab(
-                      label: AppStrings.status,
-                      isSelected: true,
-                      onTap: () {},
-                    ),
+              Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: AppColors.softGrey,
+                  borderRadius: BorderRadius.circular(9),
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    spacing: 8,
+                    children: [
+                      Expanded(
+                        child: StatusTab(
+                          label: AppStrings.pending,
+                          isSelected: true,
+                          onTap: () {},
+                        ),
+                      ),
+                      Expanded(
+                        child: StatusTab(
+                          label: AppStrings.completed,
+                          isSelected: false,
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: StatusTab(
-                      label: AppStrings.status,
-                      isSelected: false,
-                      onTap: () {},
-                    ),
-                  ),
-                ],
+                ),
               ),
               Spacer(),
               ElevatedButton(

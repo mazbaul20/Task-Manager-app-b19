@@ -16,10 +16,10 @@ class StatusTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38,
+      height: 55,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.buttonActiveBg : AppColors.softGrey,
+        color: isSelected ? AppColors.white : AppColors.softGrey,
         borderRadius: BorderRadius.circular(9),
       ),
       child: Text(
@@ -28,7 +28,6 @@ class StatusTab extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: isSelected ? AppColors.primaryText : AppColors.secondaryText,
         ),
-
       ),
     );
   }
