@@ -16,6 +16,7 @@ class AppColors {
   static const Color iconBox = Color(0xFFF3F4F7);
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color darkBackground = Color(0xFF1F1F1F);
+  static const Color buttonActiveBg = Color(0xFFE4E5E9);
 
   // Text colors
   static const Color primaryText = Color(0xFF15181E);

@@ -29,9 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _goToHome() {
-    Navigator.of(
-      context,
-    ).pushReplacement(MaterialPageRoute(builder: (context) => AddEditTaskScreen()));
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => AddEditTaskScreen()),
+    );
   }
 
   @override
