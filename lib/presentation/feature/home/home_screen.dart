@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app_b19/presentation/feature/add_edit_task/add_edit_task_screen.dart';
 import 'package:task_manager_app_b19/presentation/feature/home/widget/app_logo.dart';
-import 'package:task_manager_app_b19/presentation/feature/home/widget/empty_task_view.dart';
+import 'package:task_manager_app_b19/presentation/feature/task_details/task_details_screen.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
@@ -49,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _goToAddTask() {}
-  void _goToDetails() {}
+  void _goToDetails() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => TaskDetailsScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,37 +190,29 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             Expanded(
               child: ListView.builder(
+                shrinkWrap: true,
                 itemCount: visibleTasks.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: TaskCard(
                       task: visibleTasks[index],
-                      onTap: () {},
-                      onStatusTap: () {},
+                      onTap: _goToDetails,
+                      onStatusTap: () => _onStatusTap(visibleTasks[index]),
                     ),
                   );
                 },
               ),
             ),
-
-            // TaskCard(
-            //   task: Task(
-            //     title: 'Finish onboarding flow mockups',
-            //     description:
-            //         'Wrap up the new user onboarding screens for review.',
-            //     dueDate: 'Nov 4',
-            //     priority: 'High',
-            //     createdDate: 'Oct 28, 2026',
-            //   ),
-            //   onTap: () {},
-            //   onStatusTap: () {},
-            // ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => AddEditTaskScreen()));
+        },
         backgroundColor: AppColors.primary,
         child: Icon(Icons.add, color: AppColors.white),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app_b19/presentation/core/square_icon_button.dart';
 import 'package:task_manager_app_b19/presentation/feature/add_edit_task/add_edit_task_screen.dart';
+import 'package:task_manager_app_b19/presentation/feature/home/home_screen.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
@@ -21,7 +22,12 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        leading: SquareIconButton(icon: Icons.arrow_back, onTap: () {}),
+        leading: SquareIconButton(
+          icon: Icons.arrow_back,
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: const Text('Task Details'),
         actions: [
           SizedBox(

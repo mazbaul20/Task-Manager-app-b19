@@ -26,7 +26,12 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
       appBar: AppBar(
         title: Text(AppStrings.addTask),
         backgroundColor: AppColors.background,
-        leading: SquareIconButton(icon: Icons.arrow_back, onTap: () {}),
+        leading: SquareIconButton(
+          icon: Icons.arrow_back,
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: SafeArea(
         child: Padding(
