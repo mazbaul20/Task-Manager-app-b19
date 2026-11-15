@@ -5,6 +5,7 @@ import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
 import '../add_edit_task/add_edit_task_screen.dart';
 import '../home/home_screen.dart';
+import '../task_details/task_details_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _goToHome() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => AddEditTaskScreen()),
+      MaterialPageRoute(builder: (context) => TaskDetailsScreen()),
     );
   }
 
