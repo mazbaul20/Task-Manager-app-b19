@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app_b19/presentation/feature/add_edit_task/add_edit_task_screen.dart';
 import 'package:task_manager_app_b19/presentation/feature/home/widget/app_logo.dart';
+import 'package:task_manager_app_b19/presentation/feature/home/widget/empty_task_view.dart';
 import 'package:task_manager_app_b19/presentation/feature/task_details/task_details_screen.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_strings.dart';
+import '../../../core/database_helper.dart';
 import '../../../core/task.dart';
 import 'widget/filter_button.dart';
+import 'widget/no_result_view.dart';
 import 'widget/stat_card.dart';
 import 'widget/task_card.dart';
 
@@ -19,6 +22,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Task> _tasks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTasks();
+  }
+
+  Future<void> _loadTasks() async {
+    List<Task> taskFromDatabase = await DatabaseHelper.getTasks();
+    if (!mounted) return;
+    setState(() {
+      _tasks.clear();
+      _tasks.addAll(taskFromDatabase);
+    });
+  }
 
   String _selectedFilter = AppStrings.all;
 
@@ -43,17 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _onStatusTap(Task task) {
-    setState(() {
-      task.isCompleted = !task.isCompleted;
-    });
+  Future<void> _onStatusTap(Task task) async {
+    task.isCompleted = !task.isCompleted;
+    await DatabaseHelper.updateTask(task);
+    await _loadTasks();
   }
 
-  void _goToAddTask() {}
+  Future<void> _goToAddTask() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => AddEditTaskScreen()));
+    await _loadTasks();
+  }
+
   void _goToDetails() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => TaskDetailsScreen()),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => TaskDetailsScreen()));
   }
 
   @override
@@ -188,6 +212,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            if (_tasks.isEmpty) ...[
+              EmptyTaskView(onAddTap: _goToAddTask),
+            ] else if (visibleTasks.isEmpty)
+              NoResultView(),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,

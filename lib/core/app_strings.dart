@@ -14,6 +14,11 @@ class AppStrings {
   static const String tasks = 'TASKS';
   static const String done = 'Done';
 
+  // Empty states
+  static const String noTasksFound = 'No tasks found';
+  static const String tryAnotherFilter =
+      'Try a different search term or filter.';
+
   // Dashboard
   static const String noTasksYet = 'No tasks yet';
   static const String createFirstTask =
