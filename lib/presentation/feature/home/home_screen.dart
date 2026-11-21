@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Task> _tasks = demoTasks;
+  final List<Task> _tasks = [];
 
   String _selectedFilter = AppStrings.all;
 
