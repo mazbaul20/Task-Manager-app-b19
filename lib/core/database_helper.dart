@@ -20,7 +20,7 @@ class DatabaseHelper {
           dueDate TEXT NOT NULL,
           priority TEXT NOT NULL,
           createdDate TEXT NOT NULL,
-          isCompleted TEXT NOT NULL,
+          isCompleted INTEGER NOT NULL
         )
         ''');
       },

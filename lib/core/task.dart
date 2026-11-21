@@ -1,6 +1,6 @@
 class Task {
   Task({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.dueDate,
@@ -8,7 +8,7 @@ class Task {
     required this.createdDate,
     this.isCompleted = false,
   });
-  final String id;
+  final int? id;
   final String title;
   final String description;
   final String dueDate;
@@ -24,7 +24,7 @@ class Task {
       'dueDate': dueDate,
       'priority': priority,
       'createdDate': createdDate,
-      'isCompleted': isCompleted,
+      'isCompleted': isCompleted ? 1 : 0,
     };
   }
 

@@ -236,11 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (context) => AddEditTaskScreen()));
-        },
+        onPressed: _goToAddTask,
         backgroundColor: AppColors.primary,
         child: Icon(Icons.add, color: AppColors.white),
       ),
